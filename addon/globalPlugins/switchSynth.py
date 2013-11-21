@@ -46,11 +46,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self.synths = {'version': 1}
 
 	__gestures = {
-	"kb:control+NVDA+1": "setSynth",
-	"kb:control+NVDA+2": "setSynth",
-	"kb:control+NVDA+3": "setSynth",
-	"kb:control+NVDA+4": "setSynth",
-	"kb:control+NVDA+5": "setSynth",
-	"kb:control+NVDA+6": "setSynth",
+	"kb:control+shift+NVDA+1": "setSynth",
+	"kb:control+shift+NVDA+2": "setSynth",
+	"kb:control+shift+NVDA+3": "setSynth",
+	"kb:control+shift+NVDA+4": "setSynth",
+	"kb:control+shift+NVDA+5": "setSynth",
+	"kb:control+shift+NVDA+6": "setSynth",
 	"kb:control+shift+NVDA+v":"saveSynth",
 }

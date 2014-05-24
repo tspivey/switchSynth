@@ -16,8 +16,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def script_setSynth(self, gesture):
 		self.slot = slot = int(gesture.displayName[-1])
 		if slot in self.synths:
-			config.conf['speech'][self.synths[slot]['name']].clear()
-			config.conf['speech'][self.synths[slot]['name']].update(self.synths[slot]['config'])
+			config.conf.profiles[0]['speech'][self.synths[slot]['name']].clear()
+			config.conf.profiles[0]['speech'][self.synths[slot]['name']].update(self.synths[slot]['config'])
+			config.conf['speech'][self.synths[slot]['name']]._cache.clear()
 			speech.setSynth(self.synths[slot]['name'])
 		speech.getSynth().saveSettings()
 		ui.message(str(slot))
@@ -27,7 +28,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if self.slot not in self.synths:
 			self.synths[self.slot] = {}
 		self.synths[self.slot]['name'] = speech.getSynth().name
-		self.synths[self.slot]['config'] = dict(config.conf['speech'][speech.getSynth().name])
+		self.synths[self.slot]['config'] = dict(config.conf['speech'][speech.getSynth().name].iteritems())
 		self.write()
 		ui.message(_("saved"))
 	script_saveSynth.__doc__ = _("Save the currently used synthesizer and its settings to the currently selected slot")

@@ -25,6 +25,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			speech.setSynth(self.synths[slot]['name'])
 		speech.getSynth().saveSettings()
 		ui.message(str(slot))
+	#Translators: Input help mode message for set synth command.
 	script_setSynth.__doc__ = _("Sets the currently active synthesizer to the selected slot.")
 
 	def script_saveSynth(self, gesture):
@@ -34,6 +35,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.synths[self.slot]['config'] = dict(config.conf['speech'][speech.getSynth().name].iteritems())
 		self.write()
 		ui.message(_("saved"))
+	#Translators: Input help mode message for save synth command.
 	script_saveSynth.__doc__ = _("Save the currently used synthesizer and its settings to the currently selected slot")
 
 	def write(self):

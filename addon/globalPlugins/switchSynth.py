@@ -5,6 +5,8 @@ import config
 import globalPluginHandler
 import speech
 import ui
+import addonHandler
+addonHandler.initTranslation()
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 

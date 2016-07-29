@@ -18,7 +18,7 @@ addon_info = {
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon-description" : _("""Allows easy switching between synthesizers.
-To switch synthesizers, press control+NVDA+1 through control+NVDA+6.
+To switch synthesizers, press control+shift+NVDA+1 through control+shift+NVDA+6.
 To save the current voice in the currently selected slot, press control+shift+NVDA+v."""
 	),
 	# version

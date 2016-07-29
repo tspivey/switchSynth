@@ -1,4 +1,4 @@
-#Copyright 2015-2016 Tyler Spivey, released under the GPL
+#Copyright 2013-2016 Tyler Spivey, released under the GPL
 import cPickle
 import os
 import config

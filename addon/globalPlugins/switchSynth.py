@@ -1,5 +1,5 @@
 #Copyright 2013-2016 Tyler Spivey, released under the GPL
-import cPickle
+import pickle
 import os
 import config
 import globalPluginHandler
@@ -33,7 +33,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if self.slot not in self.synths:
 			self.synths[self.slot] = {}
 		self.synths[self.slot]['name'] = speech.getSynth().name
-		self.synths[self.slot]['config'] = dict(config.conf['speech'][speech.getSynth().name].iteritems())
+		self.synths[self.slot]['config'] = dict(config.conf['speech'][speech.getSynth().name].items())
 		self.write()
 		ui.message(_("saved"))
 	#Translators: Input help mode message for save synth command.
@@ -42,15 +42,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def write(self):
 		path = os.path.join(config.getUserDefaultConfigPath(), "switch_synth.pickle")
 		with open(path, 'wb') as f:
-			cPickle.dump(self.synths, f)
+			pickle.dump(self.synths, f)
 
 	def load(self):
 		path = os.path.join(config.getUserDefaultConfigPath(), "switch_synth.pickle")
 		if not os.path.exists(path): return
 		with open(path, 'rb') as f:
-			self.synths = cPickle.load(f)
+			self.synths = pickle.load(f)
 		if 'version' not in self.synths:
-			self.synths = {'version': 1}
+			self.synths = {'version': 0}
 
 	__gestures = {
 	"kb:control+shift+NVDA+1": "setSynth",

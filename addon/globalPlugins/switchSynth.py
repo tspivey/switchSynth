@@ -1,5 +1,8 @@
 #Copyright 2013-2016 Tyler Spivey, released under the GPL
-import cPickle
+try:
+	import cPickle
+except ModuleNotFoundError:
+	import _pickle as cPickle
 import os
 import config
 import globalPluginHandler

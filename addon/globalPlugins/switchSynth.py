@@ -45,7 +45,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def write(self):
 		path = os.path.join(config.getUserDefaultConfigPath(), "switch_synth.pickle")
 		with open(path, 'wb') as f:
-			cPickle.dump(self.synths, f)
+			cPickle.dump(self.synths, f, 0)
 
 	def load(self):
 		path = os.path.join(config.getUserDefaultConfigPath(), "switch_synth.pickle")

@@ -36,7 +36,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if self.slot not in self.synths:
 			self.synths[self.slot] = {}
 		self.synths[self.slot]['name'] = speech.getSynth().name
-		self.synths[self.slot]['config'] = dict(config.conf['speech'][speech.getSynth().name].items())
+		if hasattr(config.conf['speech'][speech.getSynth().name], 'items'):
+			items = config.conf['speech'][speech.getSynth().name].items()
+		else:
+			items = config.conf['speech'][speech.getSynth().name].iteritems()
+		self.synths[self.slot]['config'] = dict(items)
 		self.write()
 		ui.message(_("saved"))
 	#Translators: Input help mode message for save synth command.

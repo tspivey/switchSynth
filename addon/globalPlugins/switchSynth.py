@@ -39,7 +39,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if hasattr(config.conf['speech'][speech.getSynth().name], 'items'):
 			items = config.conf['speech'][speech.getSynth().name].items()
 		else:
-			items = config.conf['speech'][speech.getSynth().name].iteritems()
+			try:
+				items = config.conf['speech'][speech.getSynth().name].iteritems()
+			except AttributeError:
+				items = config.conf['speech'][speech.getSynth().name].items()
 		self.synths[self.slot]['config'] = dict(items)
 		self.write()
 		ui.message(_("saved"))

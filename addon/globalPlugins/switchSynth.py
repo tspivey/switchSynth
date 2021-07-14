@@ -7,6 +7,11 @@ import os
 import config
 import globalPluginHandler
 import speech
+try:
+	from speech import getSynth, setSynth
+except ImportError:
+	from synthDriverHandler import getSynth, setSynth
+
 import ui
 import addonHandler
 addonHandler.initTranslation()
@@ -26,8 +31,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			config.conf.profiles[0]['speech'][self.synths[slot]['name']].clear()
 			config.conf.profiles[0]['speech'][self.synths[slot]['name']].update(self.synths[slot]['config'])
 			config.conf['speech'][self.synths[slot]['name']]._cache.clear()
-			speech.setSynth(self.synths[slot]['name'])
-		speech.getSynth().saveSettings()
+			setSynth(self.synths[slot]['name'])
+		getSynth().saveSettings()
 		ui.message(str(slot))
 	#Translators: Input help mode message for set synth command.
 	script_setSynth.__doc__ = _("Sets the currently active synthesizer to the selected slot.")
@@ -35,11 +40,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def script_saveSynth(self, gesture):
 		if self.slot not in self.synths:
 			self.synths[self.slot] = {}
-		self.synths[self.slot]['name'] = speech.getSynth().name
-		if hasattr(config.conf['speech'][speech.getSynth().name], 'items'):
-			items = config.conf['speech'][speech.getSynth().name].items()
+		self.synths[self.slot]['name'] = getSynth().name
+		if hasattr(config.conf['speech'][getSynth().name], 'items'):
+			items = config.conf['speech'][getSynth().name].items()
 		else:
-			items = config.conf['speech'][speech.getSynth().name].iteritems()
+			items = config.conf['speech'][getSynth().name].iteritems()
 		self.synths[self.slot]['config'] = dict(items)
 		self.write()
 		ui.message(_("saved"))

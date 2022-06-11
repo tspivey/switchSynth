@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: switchSynth 1.05\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@freelists.org'\n"
+"POT-Creation-Date: 2022-06-10 13:10+0300\n"
+"PO-Revision-Date: 2022-06-10 13:10+0300\n"
+"Last-Translator: \n"
+"Language-Team: Alex Yeshanu <eshanuap@gmail.com>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ../../../globalPlugins\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: switchSynth.py\n"
+
+#: switchSynth.py:20
+msgid "Switch Synth"
+msgstr "Switch Synth"
+
+#: switchSynth.py:38
+msgid "Sets the currently active synthesizer to the selected slot."
+msgstr "Устанавливает текущий активный синтезатор в  выбранный слот."
+
+#: switchSynth.py:50
+msgid "saved"
+msgstr "сохранено"
+
+#: switchSynth.py:52
+msgid ""
+"Save the currently used synthesizer and its settings to the currently "
+"selected slot"
+msgstr ""
+"Сохраняет текущий используемый синтезатор и его настройки в текущий "
+"выбранный слот"

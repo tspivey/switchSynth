@@ -4,6 +4,7 @@ try:
 except ModuleNotFoundError:
 	import _pickle as cPickle
 import os
+import copy
 import config
 import globalPluginHandler
 import speech
@@ -30,8 +31,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if slot in self.synths:
 			config.conf.profiles[0]['speech'][self.synths[slot]['name']].clear()
 			config.conf.profiles[0]['speech'][self.synths[slot]['name']].update(self.synths[slot]['config'])
+			config.conf['speech'][self.synths[slot]['name']] = copy.deepcopy(self.synths[slot]['config'])
+
 			config.conf['speech'][self.synths[slot]['name']]._cache.clear()
-			setSynth(self.synths[slot]['name'])
+			if getSynth().name != self.synths[slot]['name']:
+				setSynth(self.synths[slot]['name'])
+			else:
+				getSynth().loadSettings(onlyChanged=True)
 		getSynth().saveSettings()
 		ui.message(str(slot))
 	#Translators: Input help mode message for set synth command.

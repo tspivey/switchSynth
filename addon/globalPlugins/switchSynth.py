@@ -51,7 +51,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			items = config.conf['speech'][getSynth().name].items()
 		else:
 			items = config.conf['speech'][getSynth().name].iteritems()
-		self.synths[self.slot]['config'] = dict(items)
+		items = dict(items)
+		for k, v in items.items():
+			if isinstance(v, config.AggregatedSection):
+				items[k] = v.copy()
+		self.synths[self.slot]['config'] = items
 		self.write()
 		ui.message(_("saved"))
 	#Translators: Input help mode message for save synth command.

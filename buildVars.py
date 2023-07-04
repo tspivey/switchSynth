@@ -22,7 +22,7 @@ To switch synthesizers, press control+shift+NVDA+1 through control+shift+NVDA+6.
 To save the current voice in the currently selected slot, press control+shift+NVDA+v."""
 	),
 	# version
-	"addon_version" : "1.06.1",
+	"addon_version" : "1.06.2",
 	# Author(s)
 	"addon_author" : "Tyler Spivey <tspivey@pcdesk.net>",
 	# URL for the add-on documentation support

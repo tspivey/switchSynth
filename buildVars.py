@@ -28,7 +28,7 @@ To switch synthesizers, press control+shift+NVDA+1 through control+shift+NVDA+6.
 To save the current voice in the currently selected slot, press control+shift+NVDA+v."""
 	),
 	# version
-	"addon_version": "1.06.4",
+	"addon_version": "1.07.0",
 	# Author(s)
 	"addon_author": "Tyler Spivey <tspivey@pcdesk.net>",
 	# URL for the add-on documentation support
@@ -40,7 +40,7 @@ To save the current voice in the currently selected slot, press control+shift+NV
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
 	"addon_minimumNVDAVersion": "2019.2.0",
 	# Last NVDA version supported/tested (e.g. "2018.4.0", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2025.1.0",
+	"addon_lastTestedNVDAVersion": "2026.1.0",
 	# Add-on update channel (default is None, denoting stable releases,
 	# and for development releases, use "dev".)
 	# Do not change unless you know what you are doing!

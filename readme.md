@@ -7,3 +7,6 @@ There are 6 synthesizer slots, 1 through 6. By default, they are empty.
 Slots can be switched by pressing control+shift+NVDA+1 through control+shift+NVDA+6.
 Once a slot is switched to, its synthesizer and settings will be loaded if they exist.
 To save the current synthesizer and its settings to the currently active slot, press control+shift+NVDA+v.
+
+## Changes in 1.07
+The add-on now allows you to change the gesture used for each slot independently from the Input Gestures dialog.

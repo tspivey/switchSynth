@@ -8,5 +8,7 @@ Slots can be switched by pressing control+shift+NVDA+1 through control+shift+NVD
 Once a slot is switched to, its synthesizer and settings will be loaded if they exist.
 To save the current synthesizer and its settings to the currently active slot, press control+shift+NVDA+v.
 
+Loading a slot restores the settings saved in that slot. Settings absent from an older slot, such as options added by a synthesizer update, keep their current values. To change a setting explicitly saved in a slot, adjust it and save the slot again.
+
 ## Changes in 1.07
 The add-on now allows you to change the gesture used for each slot independently from the Input Gestures dialog.

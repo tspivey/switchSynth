@@ -17,6 +17,24 @@ import ui
 import addonHandler
 addonHandler.initTranslation()
 
+def _copyConfig(value):
+	"""Copy settings without retaining NVDA's live configuration sections."""
+	if hasattr(value, 'items'):
+		return {key: _copyConfig(item) for key, item in value.items()}
+	if isinstance(value, (list, tuple)):
+		return type(value)(_copyConfig(item) for item in value)
+	return copy.deepcopy(value)
+
+def _mergeConfig(current, saved):
+	"""Restore saved values while retaining settings absent from older slots."""
+	merged = _copyConfig(current)
+	for key, value in saved.items():
+		if hasattr(value, 'items') and isinstance(merged.get(key), dict):
+			merged[key] = _mergeConfig(merged[key], value)
+		else:
+			merged[key] = _copyConfig(value)
+	return merged
+
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	scriptCategory = _("Switch Synth")
 
@@ -53,9 +71,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def loadSynth(self, slot):
 		self.slot = slot
 		if slot in self.synths:
-			config.conf.profiles[0]['speech'][self.synths[slot]['name']].clear()
-			config.conf.profiles[0]['speech'][self.synths[slot]['name']].update(self.synths[slot]['config'])
-			config.conf['speech'][self.synths[slot]['name']] = copy.deepcopy(self.synths[slot]['config'])
+			# Capture live settings before switching away. Older slots may not
+			# contain options added by a newer version of the synthesizer.
+			getSynth().saveSettings()
+			name = self.synths[slot]['name']
+			saved = self.synths[slot]['config']
+			merged = _mergeConfig(config.conf['speech'][name], saved)
+			base = config.conf.profiles[0]['speech'][name]
+			base.update(_mergeConfig(base, saved))
+			config.conf['speech'][name] = merged
 
 			config.conf['speech'][self.synths[slot]['name']]._cache.clear()
 			if getSynth().name != self.synths[slot]['name']:
@@ -66,18 +90,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		ui.message(str(slot))
 
 	def script_saveSynth(self, gesture):
+		getSynth().saveSettings()
 		if self.slot not in self.synths:
 			self.synths[self.slot] = {}
 		self.synths[self.slot]['name'] = getSynth().name
-		if hasattr(config.conf['speech'][getSynth().name], 'items'):
-			items = config.conf['speech'][getSynth().name].items()
-		else:
-			items = config.conf['speech'][getSynth().name].iteritems()
-		items = dict(items)
-		for k, v in items.items():
-			if isinstance(v, config.AggregatedSection):
-				items[k] = v.copy()
-		self.synths[self.slot]['config'] = items
+		self.synths[self.slot]['config'] = _copyConfig(config.conf['speech'][getSynth().name])
 		self.write()
 		ui.message(_("saved"))
 	#Translators: Input help mode message for save synth command.

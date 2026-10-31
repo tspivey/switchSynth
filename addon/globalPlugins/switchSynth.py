@@ -40,7 +40,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def script_setSynth4(self, gesture):
 		self.loadSynth(4)
-		script_setSynth4.__doc__ = _("Sets the currently active synthesizer to slot 4.")
+	script_setSynth4.__doc__ = _("Sets the currently active synthesizer to slot 4.")
 
 	def script_setSynth5(self, gesture):
 		self.loadSynth(5)
